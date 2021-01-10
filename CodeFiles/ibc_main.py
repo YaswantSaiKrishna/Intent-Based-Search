@@ -105,46 +105,46 @@ class view:
                           bd = '2', command = self.dispmsg)  
         self.btn.grid(row=9, column=1, padx = 5, pady = 10)
         
-        def dispmsg(self):
-            name_label2 = ttk.Label(self.window, 
-                                    text = "File with the queried intents is downloaded at " + str(self.name_var.get()), 
-                                    font=('Times New Roman', 10, 'normal'))
-            name_label2.grid(row=10,column=1,padx = 5, pady = 10)
+    def dispmsg(self):
+        name_label2 = ttk.Label(self.window, 
+                                text = "File with the queried intents is downloaded at " + str(self.name_var.get()), 
+                                font=('Times New Roman', 10, 'normal'))
+        name_label2.grid(row=10,column=1,padx = 5, pady = 10)
 
-            if str(self.name_var1.get()) != '':
-                learning = 'active'
-                Data,UserFnames =  Read_Files(str(self.name_var.get()), learning=learning, vertical= str(self.vertical.get()).lower())
-                Data_Frame = pd.DataFrame(Data, columns = ['FileName', 'FilePath', 'Text'])
-                Data_Frame = NER(Data_Frame)
-                kf = []
-                for ind in Data_Frame.index:
-                    text = Data_Frame['Text'][ind]
-                    tr4w = TextRank4Keyword()
-                    tr4w.analyze(text, candidate_pos = ['NOUN', 'PROPN'], window_size=4, lower=False)
-                    kf.append(tr4w.get_keywords(100))
-                Data_Frame['KeyPhrases'] = kf
-                name = str(self.vertical.get()).lower()
-                endpoint = "https://<EndPoint>.search.windows.net"
-                key = "<Cognitive search key>"
-                if name == 'default':
-                    create_index(name, endpoint, key)
-                upload_docs(Data_Frame=Data_Frame, index_name= name, endpoint=endpoint, key=key)
-                result = search(rootdir=str(self.name_var.get()), 
-                                Query=str(self.name_var1.get()), index_name=name, 
-                                endpoint=endpoint, key= key, fnames = UserFnames, 
-                                vertical=str(self.vertical.get()).lower())
-                if name == 'default':
-                    from azure.search.documents.indexes import SearchIndexClient
-                    from azure.core.credentials import AzureKeyCredential
-                    client = SearchIndexClient(endpoint, AzureKeyCredential(key))
-                    client.delete_index(name)
-            elif str(self.name_var1.get()) == '' and str(self.classes.get()) != 'None':
-                learning = 'passive'
-                Data,UserFnames =  Read_Files(str(self.name_var.get()), learning=learning, vertical= None)
-                Data_Frame  =  pd.DataFrame(Data, columns = ['FileName', 'FilePath', 'Text'])
-                result = classifier(dataframe=Data_Frame, classs=str(self.classes.get()), rootdir=str(self.name_var.get()))
-            else:
-                pass
+        if str(self.name_var1.get()) != '':
+            learning = 'active'
+            Data,UserFnames =  Read_Files(str(self.name_var.get()), learning=learning, vertical= str(self.vertical.get()).lower())
+            Data_Frame = pd.DataFrame(Data, columns = ['FileName', 'FilePath', 'Text'])
+            Data_Frame = NER(Data_Frame)
+            kf = []
+            for ind in Data_Frame.index:
+                text = Data_Frame['Text'][ind]
+                tr4w = TextRank4Keyword()
+                tr4w.analyze(text, candidate_pos = ['NOUN', 'PROPN'], window_size=4, lower=False)
+                kf.append(tr4w.get_keywords(100))
+            Data_Frame['KeyPhrases'] = kf
+            name = str(self.vertical.get()).lower()
+            endpoint = "https://<EndPoint>.search.windows.net"
+            key = "<Cognitive search key>"
+            if name == 'default':
+                create_index(name, endpoint, key)
+            upload_docs(Data_Frame=Data_Frame, index_name= name, endpoint=endpoint, key=key)
+            result = search(rootdir=str(self.name_var.get()), 
+                            Query=str(self.name_var1.get()), index_name=name, 
+                            endpoint=endpoint, key= key, fnames = UserFnames, 
+                            vertical=str(self.vertical.get()).lower())
+            if name == 'default':
+                from azure.search.documents.indexes import SearchIndexClient
+                from azure.core.credentials import AzureKeyCredential
+                client = SearchIndexClient(endpoint, AzureKeyCredential(key))
+                client.delete_index(name)
+        elif str(self.name_var1.get()) == '' and str(self.classes.get()) != 'None':
+            learning = 'passive'
+            Data,UserFnames =  Read_Files(str(self.name_var.get()), learning=learning, vertical= None)
+            Data_Frame  =  pd.DataFrame(Data, columns = ['FileName', 'FilePath', 'Text'])
+            result = classifier(dataframe=Data_Frame, classs=str(self.classes.get()), rootdir=str(self.name_var.get()))
+        else:
+            pass
 
 
 # Creating tkinter window 

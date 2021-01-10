@@ -103,7 +103,7 @@ class view:
         # Create a Button 
         self.btn = Button(self.window, text = 'search', 
                           bd = '2', command = self.dispmsg)  
-                          self.btn.grid(row=9, column=1, padx = 5, pady = 10)
+        self.btn.grid(row=9, column=1, padx = 5, pady = 10)
         
         def dispmsg(self):
             name_label2 = ttk.Label(self.window, 

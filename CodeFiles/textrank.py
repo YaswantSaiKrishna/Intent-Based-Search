@@ -32,7 +32,7 @@ class TextRank4Keyword():
                             selected_words.append(token.text.lower())
                         else: 
                             selected_words.append(token.text)
-            sentences.append(selected_words)
+            sentences.append(selected_words) 
         return sentences
     
     def get_vocab(self, sentences):

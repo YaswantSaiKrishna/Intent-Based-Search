@@ -22,7 +22,7 @@ Step 7: Copy the downloaded model to Intent-Based-Search/CodeFiles/FastTextModel
 
 ![alt text](https://github.com/YaswantSaiKrishna/Intent-Based-Search/blob/main/images/3.png?raw=true)
 
-Step 8: Open the Intent-Based-Search/CodeFiles/ibc_main.py file and replace the endpoint and key with your azure cognitive search endpoint.
+Step 8: Open the Intent-Based-Search/CodeFiles/ibc_main.py file and replace the endpoint and key with your azure cognitive search endpoint and keys.
 
 ![alt text](https://github.com/YaswantSaiKrishna/Intent-Based-Search/blob/main/images/4.jpg?raw=true)
 

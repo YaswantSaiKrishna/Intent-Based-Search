@@ -8,7 +8,7 @@ Step 2: Create a python3.8 virtual environment and activate it(Optional).
 
 Step 3: Now, clone the repository using git clone(As shown in below image).
 
-Step 4: Once the repository is cloned change your current directory to Intent-Based-Search using [cd Intent-Based-Search (Linux)].
+Step 4: Once the repository is cloned change your current directory to Intent-Based-Search using [cd Intent-Based-Search (Bash)].
 
 Step 5: Now, install the requirements using [pip install -r requirements.txt].
 

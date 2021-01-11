@@ -15,7 +15,7 @@ def upload_docs(Data_Frame, index_name, endpoint, key):
     i = df.shape[0] + 1
     for e in dataframe2:
         DOCUMENT = {
-                    'Id' : str(i) + str(''.join([char for char in e['FileName'] if char not in string.punctuation])),
+                    'Id' : str(i),
                     'FileName': e['FileName'],
                     'FilePath': e['FilePath'],
                     'KeyPhrases': e['KeyPhrases'],

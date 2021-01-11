@@ -12,7 +12,7 @@ def search(rootdir, Query, index_name, endpoint, key, fnames, vertical):
                           index_name=index_name,
                           credential=credential)
     results = client.search(search_text=Query)
-    df = pd.read_csv('/TrackerFiles/{}.csv'.format(vertical))
+    df = pd.read_csv('TrackerFiles/{}.csv'.format(vertical))
     r = []
 
     for result in results:
@@ -23,7 +23,7 @@ def search(rootdir, Query, index_name, endpoint, key, fnames, vertical):
                 df.loc[df['FileName'] == str(result['FileName']), 'Intent'] = str(Query)
             else:
                 df.loc[df['FileName'] == str(result['FileName']), 'Intent'] = df.loc[df['FileName'] == str(result['FileName']), 'Intent'] + "," + str(Query)
-    df.to_csv('/TrackerFiles/{}.csv'.format(vertical), index = False) 
+    df.to_csv('TrackerFiles/{}.csv'.format(vertical), index = False) 
     with open(rootdir + 'result.csv', 'w') as csvfile: 
         writer = csv.DictWriter(csvfile, fieldnames = field_names) 
         writer.writeheader() 

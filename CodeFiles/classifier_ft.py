@@ -17,7 +17,7 @@ def classifier(dataframe, classs, rootdir):
                 '__label__13' : 'Miscellaneous',
                 '__label__14' : 'Private Action',
                 '__label__15' : 'Others'}
-    model = fasttext.load_model("/FastTextModels/fasttext_supreme.bin")
+    model = fasttext.load_model("FastTextModels/fasttext_supreme.bin")
     field_names = ['FileName', 'FilePath', 'Intent']
     r = []
     for ind in dataframe.index:

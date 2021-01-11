@@ -13,7 +13,7 @@ def Read_Files(rootdir, learning = 'active', vertical = None):
         for filee in files:
             try:
                 if learning=='active' and vertical != None: # Active
-                    df = pd.read_csv('/TrackerFiles/{}.csv'.format(vertical))
+                    df = pd.read_csv('TrackerFiles/{}.csv'.format(vertical))
                     user_fnames.append(str(filee))
                     if df['FileName'].where(df['FileName'] == str(filee)).any():
                         pass
@@ -26,7 +26,7 @@ def Read_Files(rootdir, learning = 'active', vertical = None):
                         text = str(text).strip(' ')
                         cleaned_text = ''.join([char for char in text if char not in string.punctuation and char != '\n'])
                         cl_text.append(cleaned_text)
-                    df.to_csv('/TrackerFiles/{}.csv'.format(vertical), index = False)
+                    df.to_csv('TrackerFiles/{}.csv'.format(vertical), index = False)
                 else: # Passive
                     text = textract.process(os.path.join(subdir, filee)).decode("utf-8") ## Extract the text from the files and decode the byte string to text.
                     paths.append(os.path.join(subdir, filee)) # Append the path of the file to path variable.

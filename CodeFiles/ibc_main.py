@@ -37,7 +37,7 @@ class view:
         self.vertical.grid(column = 1, row = 5) 
         self.vertical.current()
 
-        # declaring string variable for storing name and password 
+        # declaring string variable for storing folderpath
         self.name_var=tk.StringVar() 
 
         # creating a label for folder_path using widget Label 
